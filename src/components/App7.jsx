@@ -8,7 +8,7 @@ export default function App7() {
   };
   return (
     <div className="App-Row">
-      <div>
+      <div style={{ backgroundColor: 'lightblue' }}>
         <h3>Billing Form</h3>
         <p>
           <input
@@ -37,7 +37,7 @@ export default function App7() {
           <button onClick={handleSubmit}>Submit</button>
         </p>
       </div>
-      <div>
+      <div style={{ backgroundColor: 'lightblue' }}>
         <h4>Items</h4>
         <table border="1">
           {products &&

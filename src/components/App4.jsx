@@ -1,34 +1,34 @@
-import React from "react";
 import { useState } from "react";
 export default function App4() {
   const [user, setUser] = useState({});
   const [msg, setMsg] = useState();
   const handleSubmit = () => {
-    if (user.email === "cathy@gmail.com" && user.password === "1234") {
-      setMsg("Welcome Cathy!");
-    } else {
-      setMsg("Access Denied");
+    if(user.email==="john@gmail.com" && user.password==="1234"){
+        setMsg("Welcome John")
     }
-  };
+    else {
+        setMsg("Access Denied")
+    }
+  }
   return (
     <div>
-      <h3>Login Form</h3>
+      <h3>This is App4</h3>
       {msg}
       <p>
         <input
           type="text"
-          onChange={(event) => setUser({ ...user, email: event.target.value })}
+          placeholder="Email address"
+          onChange={(e) => setUser({ ...user, email: e.target.value })}
         ></input>
       </p>
       <p>
         <input
           type="password"
-          onChange={(event) =>
-            setUser({ ...user, password: event.target.value })
-          }
+          placeholder="Password"
+          onChange={(e) => setUser({ ...user, password: e.target.value })}
         ></input>
       </p>
-      <button onClick={handleSubmit}>Log In</button>
+      <button onClick={handleSubmit}>Submit</button>
     </div>
   );
 }

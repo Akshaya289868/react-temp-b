@@ -1,9 +1,12 @@
-import React from "react";
-
+import React from 'react'
 export default function App1() {
+    let a = 10
+    let b = 20
   return (
     <div>
-      <h1>App1</h1>
+        {a+b}
+        <p style={{backgroundColor:'pink'}}>Hello World</p>
+        <p>Good Morning</p>
     </div>
-  );
+  )
 }
