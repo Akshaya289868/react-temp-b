@@ -1,40 +1,51 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useRef } from "react";
 import "./App10.css";
 export default function App10() {
   const [run, setRun] = useState(0);
   const [wicket, setWicket] = useState(0);
   const [msg, setMsg] = useState("Let's begin the game!");
-  useEffect(() => {
-    if (run > 0 && wicket < 10) {
+  const runRef = useRef();
+  const wicketRef = useRef();
+  const msgRef = useRef()
+  const handleRun = () => {
+    if (wicket < 10) {
+      setRun(run + 1);
       setMsg("Well Done!");
+      runRef.current.style.backgroundColor = "yellow";
+      wicketRef.current.style.backgroundColor = "white";
     }
-  }, [run]);
-  useEffect(() => {
-    if (wicket === 10) {
-      setMsg("Game Over!");
-    } else if (wicket < 9 && wicket > 0) {
-      setMsg("Better Luck Next Time");
-    } else if (wicket > 10) {
-      setWicket(10);
+  };
+
+  const handleWicket = () => {
+    wicket < 10 && setWicket(wicket + 1);
+    if (wicket < 9) {
+      setMsg("Better luck next time!");
+      runRef.current.style.backgroundColor = "white";
+      wicketRef.current.style.backgroundColor = "yellow";
+    } else {
+      setMsg("Game Over");
+      msgRef.current.style.backgroundColor = "yellow"
+      runRef.current.style.backgroundColor = "white";
+      wicketRef.current.style.backgroundColor = "white";
     }
-  }, [wicket]);
+  };
   return (
     <div className="App-App10-Container">
       <h3>This is App10</h3>
       <div className="App-App10-Row">
-        <div className="App-App10-Box">
-          <button onClick={() => setRun(run + 1)}>Run</button>
+        <div className="App-App10-Box" ref={runRef}>
+          <button onClick={handleRun}>Run</button>
           <p>{run}</p>
         </div>
-        <div className="App-App10-Box">
-          <button onClick={() => setWicket(wicket + 1)}>Wicket</button>
+        <div className="App-App10-Box" ref={wicketRef}>
+          <button onClick={handleWicket}>Wicket</button>
           <p>{wicket}</p>
         </div>
       </div>
       <hr></hr>
       <div className="App-App10-Row">
-        <div className="App-App10-Box"> {msg}</div>
+        <div className="App-App10-Box" ref={msgRef}> {msg}</div>
       </div>
     </div>
   );
